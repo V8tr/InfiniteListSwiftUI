@@ -25,7 +25,7 @@ struct InfiniteListContainer: View {
     
     private func fetch() {
         page += 1
-        subscription = GithubAPI.searchRepos(query: "language:swift", page: page)
+        subscription = GithubAPI.searchRepos(query: "swift", page: page)
             .sink(receiveCompletion: { _ in },
                   receiveValue: { batch in self.repos += batch })
     }
