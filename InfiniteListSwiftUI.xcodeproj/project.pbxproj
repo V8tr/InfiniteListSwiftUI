@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		880764BD249154EE002FE7AE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 880764BC249154EE002FE7AE /* AppDelegate.swift */; };
 		880764BF249154EE002FE7AE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 880764BE249154EE002FE7AE /* SceneDelegate.swift */; };
-		880764C1249154EE002FE7AE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 880764C0249154EE002FE7AE /* ContentView.swift */; };
 		880764C3249154F0002FE7AE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 880764C2249154F0002FE7AE /* Assets.xcassets */; };
 		880764C6249154F0002FE7AE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 880764C5249154F0002FE7AE /* Preview Assets.xcassets */; };
 		880764C9249154F0002FE7AE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 880764C7249154F0002FE7AE /* LaunchScreen.storyboard */; };
@@ -18,14 +17,13 @@
 		880764DB24915D7B002FE7AE /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 880764D724915D7B002FE7AE /* ImageCache.swift */; };
 		880764DC24915D7B002FE7AE /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 880764D824915D7B002FE7AE /* ImageLoader.swift */; };
 		880764DD24915D7B002FE7AE /* AsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 880764D924915D7B002FE7AE /* AsyncImage.swift */; };
-		880764DF24915DB7002FE7AE /* MoviesAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 880764DE24915DB7002FE7AE /* MoviesAPI.swift */; };
+		880764E12492069B002FE7AE /* GithubAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 880764E02492069B002FE7AE /* GithubAPI.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		880764B9249154EE002FE7AE /* InfiniteListSwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InfiniteListSwiftUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		880764BC249154EE002FE7AE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		880764BE249154EE002FE7AE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		880764C0249154EE002FE7AE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		880764C2249154F0002FE7AE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		880764C5249154F0002FE7AE /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		880764C8249154F0002FE7AE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -35,7 +33,7 @@
 		880764D724915D7B002FE7AE /* ImageCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 		880764D824915D7B002FE7AE /* ImageLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 		880764D924915D7B002FE7AE /* AsyncImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncImage.swift; sourceTree = "<group>"; };
-		880764DE24915DB7002FE7AE /* MoviesAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesAPI.swift; sourceTree = "<group>"; };
+		880764E02492069B002FE7AE /* GithubAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubAPI.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,9 +67,8 @@
 			isa = PBXGroup;
 			children = (
 				880764D1249154FE002FE7AE /* App */,
-				880764C0249154EE002FE7AE /* ContentView.swift */,
 				880764D224915582002FE7AE /* InfiniteList.swift */,
-				880764DE24915DB7002FE7AE /* MoviesAPI.swift */,
+				880764E02492069B002FE7AE /* GithubAPI.swift */,
 				880764D424915D7B002FE7AE /* Controls */,
 				880764D0249154F6002FE7AE /* SupportingFiles */,
 				880764C4249154F0002FE7AE /* Preview Content */,
@@ -197,12 +194,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				880764DC24915D7B002FE7AE /* ImageLoader.swift in Sources */,
+				880764E12492069B002FE7AE /* GithubAPI.swift in Sources */,
 				880764DB24915D7B002FE7AE /* ImageCache.swift in Sources */,
 				880764BD249154EE002FE7AE /* AppDelegate.swift in Sources */,
 				880764BF249154EE002FE7AE /* SceneDelegate.swift in Sources */,
 				880764DD24915D7B002FE7AE /* AsyncImage.swift in Sources */,
-				880764DF24915DB7002FE7AE /* MoviesAPI.swift in Sources */,
-				880764C1249154EE002FE7AE /* ContentView.swift in Sources */,
 				880764D324915582002FE7AE /* InfiniteList.swift in Sources */,
 				880764DA24915D7B002FE7AE /* Spinner.swift in Sources */,
 			);

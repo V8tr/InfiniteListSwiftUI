@@ -7,18 +7,67 @@
 //
 
 import SwiftUI
+import Combine
 
-struct InfiniteList<Indicator: View>: View {
-    let loadNextPage: () -> Void
-    let loadingIndicator: Indicator
-    
+struct InfiniteListContainer: View {
+    @State private var page = 1
+    @State private var repos: [Repository] = []
+    @State private var subscription: AnyCancellable?
+
     var body: some View {
-        EmptyView()
+        InfiniteList(
+            repos: repos,
+            onScrolledAtBottom: fetch
+        )
+        .onAppear(perform: fetch)
+        .onDisappear(perform: cancel)
+    }
+    
+    private func fetch() {
+        page += 1
+        subscription = GithubAPI.searchRepos(query: "language:swift", page: page)
+            .sink(receiveCompletion: { _ in },
+                  receiveValue: { batch in self.repos += batch })
+    }
+    
+    private func cancel() {
+        subscription?.cancel()
     }
 }
 
-struct InfiniteList_Previews: PreviewProvider {
-    static var previews: some View {
-        InfiniteList(loadNextPage: {}, loadingIndicator: EmptyView())
+struct InfiniteList: View {
+    let repos: [Repository]
+    let onScrolledAtBottom: () -> Void
+    
+    var body: some View {
+        List {
+            ForEach(repos) { repo in
+                RepositoryRow(repo: repo).onAppear {
+                    if self.repos.last == repo {
+                        self.onScrolledAtBottom()
+                    }
+                }
+            }
+            
+            loadingIndicator
+        }
+    }
+    
+    private var loadingIndicator: some View {
+        Spinner(style: .medium)
+            .frame(idealWidth: .infinity, maxWidth: .infinity, alignment: .center)
+    }
+}
+
+struct RepositoryRow: View {
+    let repo: Repository
+    
+    var body: some View {
+        VStack {
+            Text(repo.name).font(.title)
+            Text("⭐️ \(repo.stargazers_count)")
+            repo.description.map(Text.init)?.font(.body)
+            HStack { Spacer() }
+        }
     }
 }
