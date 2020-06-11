@@ -13,7 +13,7 @@ struct InfiniteListContainer: View {
     @State private var page = 1
     @State private var repos: [Repository] = []
     @State private var subscription: AnyCancellable?
-
+    
     var body: some View {
         InfiniteList(
             repos: repos,
@@ -67,7 +67,7 @@ struct RepositoryRow: View {
             Text(repo.name).font(.title)
             Text("⭐️ \(repo.stargazers_count)")
             repo.description.map(Text.init)?.font(.body)
-            HStack { Spacer() }
         }
+        .frame(idealWidth: .infinity, maxWidth: .infinity, alignment: .center)
     }
 }
