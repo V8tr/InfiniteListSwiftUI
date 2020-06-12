@@ -13,8 +13,10 @@ class RepositoriesViewModel: ObservableObject {
     @Published private(set) var state = State()
     private var subscriptions = Set<AnyCancellable>()
     
-    func fetchNextPage() {
-        GithubAPI.searchRepos(query: "swiftnio", page: state.page)
+    func fetchNextPageIfPossible() {
+        guard state.canLoadNextPage else { return }
+        
+        GithubAPI.searchRepos(query: "swift", page: state.page)
             .sink(receiveCompletion: onReceive,
                   receiveValue: onReceive)
             .store(in: &subscriptions)
@@ -28,9 +30,8 @@ class RepositoriesViewModel: ObservableObject {
             state.canLoadNextPage = false
         }
     }
-    
+
     private func onReceive(_ batch: [Repository]) {
-//        print("Loaded page \(state.page), batch \(batch.count)")
         state.repos += batch
         state.page += 1
         state.canLoadNextPage = batch.count == GithubAPI.pageSize
@@ -50,9 +51,9 @@ struct RepositoriesListContainer: View {
         RepositoriesList(
             repos: viewModel.state.repos,
             isLoading: viewModel.state.canLoadNextPage,
-            onScrolledAtBottom: viewModel.fetchNextPage
+            onScrolledAtBottom: viewModel.fetchNextPageIfPossible
         )
-        .onAppear(perform: viewModel.fetchNextPage)
+        .onAppear(perform: viewModel.fetchNextPageIfPossible)
     }
 }
 
