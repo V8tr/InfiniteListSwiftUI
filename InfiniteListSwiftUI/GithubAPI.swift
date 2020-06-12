@@ -13,7 +13,7 @@ enum GithubAPI {
     static let pageSize = 10
     
     static func searchRepos(query: String, page: Int) -> AnyPublisher<[Repository], Error> {
-        let url = URL(string: "https://api.github.com/search/repositories?q=\(query)&sort=stars&per_page=\(GithubAPI.pageSize)&page=\(page)")!
+        let url = URL(string: "https://api.github.com/search/repositories?q=\(query)&sort=stars&per_page=\(Self.pageSize)&page=\(page)")!
         return URLSession.shared
             .dataTaskPublisher(for: url)
             .handleEvents(receiveOutput: { print(NSString(data: $0.data, encoding: String.Encoding.utf8.rawValue)!) })

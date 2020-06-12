@@ -9,35 +9,50 @@
 import SwiftUI
 import Combine
 
-struct RepositoriesListContainer: View {
-    @State private var page = 1
-    @State private var repos: [Repository] = []
-    @State private var subscription: AnyCancellable?
-    @State private var canLoadNextPage = true
+class RepositoriesViewModel: ObservableObject {
+    @Published private(set) var state = State()
+    private var subscriptions = Set<AnyCancellable>()
     
-    var body: some View {
-        RepositoriesList(
-            repos: repos,
-            isLoading: canLoadNextPage,
-            onScrolledAtBottom: fetch
-        )
-        .onAppear(perform: fetch)
-        .onDisappear(perform: cancel)
+    func fetchNextPage() {
+        GithubAPI.searchRepos(query: "swiftnio", page: state.page)
+            .sink(receiveCompletion: onReceive,
+                  receiveValue: onReceive)
+            .store(in: &subscriptions)
     }
     
-    private func fetch() {
-        page += 1
-        subscription = GithubAPI.searchRepos(query: "swift", page: page)
-            .sink(receiveCompletion: { _ in }, receiveValue: onReceive)
+    private func onReceive(_ completion: Subscribers.Completion<Error>) {
+        switch completion {
+        case .finished:
+            break
+        case .failure:
+            state.canLoadNextPage = false
+        }
     }
     
     private func onReceive(_ batch: [Repository]) {
-        repos += batch
-        canLoadNextPage = batch.count < GithubAPI.pageSize
+//        print("Loaded page \(state.page), batch \(batch.count)")
+        state.repos += batch
+        state.page += 1
+        state.canLoadNextPage = batch.count == GithubAPI.pageSize
     }
+
+    struct State {
+        var repos: [Repository] = []
+        var page: Int = 1
+        var canLoadNextPage = true
+    }
+}
+
+struct RepositoriesListContainer: View {
+    @ObservedObject var viewModel: RepositoriesViewModel
     
-    private func cancel() {
-        subscription?.cancel()
+    var body: some View {
+        RepositoriesList(
+            repos: viewModel.state.repos,
+            isLoading: viewModel.state.canLoadNextPage,
+            onScrolledAtBottom: viewModel.fetchNextPage
+        )
+        .onAppear(perform: viewModel.fetchNextPage)
     }
 }
 
