@@ -13,10 +13,12 @@ struct RepositoriesListContainer: View {
     @State private var page = 1
     @State private var repos: [Repository] = []
     @State private var subscription: AnyCancellable?
+    @State private var canLoadNextPage = true
     
     var body: some View {
         RepositoriesList(
             repos: repos,
+            isLoading: canLoadNextPage,
             onScrolledAtBottom: fetch
         )
         .onAppear(perform: fetch)
@@ -26,8 +28,12 @@ struct RepositoriesListContainer: View {
     private func fetch() {
         page += 1
         subscription = GithubAPI.searchRepos(query: "swift", page: page)
-            .sink(receiveCompletion: { _ in },
-                  receiveValue: { batch in self.repos += batch })
+            .sink(receiveCompletion: { _ in }, receiveValue: onReceive)
+    }
+    
+    private func onReceive(_ batch: [Repository]) {
+        repos += batch
+        canLoadNextPage = batch.count < GithubAPI.pageSize
     }
     
     private func cancel() {
@@ -37,12 +43,15 @@ struct RepositoriesListContainer: View {
 
 struct RepositoriesList: View {
     let repos: [Repository]
+    let isLoading: Bool
     let onScrolledAtBottom: () -> Void
     
     var body: some View {
         List {
             reposList
-            loadingIndicator
+            if isLoading {
+                loadingIndicator
+            }
         }
     }
     
@@ -74,4 +83,3 @@ struct RepositoryRow: View {
         .frame(idealWidth: .infinity, maxWidth: .infinity, alignment: .center)
     }
 }
-
