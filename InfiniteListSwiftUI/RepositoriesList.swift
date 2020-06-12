@@ -1,5 +1,5 @@
 //
-//  InfiniteList.swift
+//  RepositoriesList.swift
 //  InfiniteListSwiftUI
 //
 //  Created by Vadim Bulavin on 6/10/20.
@@ -9,13 +9,13 @@
 import SwiftUI
 import Combine
 
-struct InfiniteListContainer: View {
+struct RepositoriesListContainer: View {
     @State private var page = 1
     @State private var repos: [Repository] = []
     @State private var subscription: AnyCancellable?
     
     var body: some View {
-        InfiniteList(
+        RepositoriesList(
             repos: repos,
             onScrolledAtBottom: fetch
         )
@@ -35,21 +35,24 @@ struct InfiniteListContainer: View {
     }
 }
 
-struct InfiniteList: View {
+struct RepositoriesList: View {
     let repos: [Repository]
     let onScrolledAtBottom: () -> Void
     
     var body: some View {
         List {
-            ForEach(repos) { repo in
-                RepositoryRow(repo: repo).onAppear {
-                    if self.repos.last == repo {
-                        self.onScrolledAtBottom()
-                    }
+            reposList
+            loadingIndicator
+        }
+    }
+    
+    private var reposList: some View {
+        ForEach(repos) { repo in
+            RepositoryRow(repo: repo).onAppear {
+                if self.repos.last == repo {
+                    self.onScrolledAtBottom()
                 }
             }
-            
-            loadingIndicator
         }
     }
     
@@ -71,3 +74,4 @@ struct RepositoryRow: View {
         .frame(idealWidth: .infinity, maxWidth: .infinity, alignment: .center)
     }
 }
+

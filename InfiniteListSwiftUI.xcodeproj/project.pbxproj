@@ -12,7 +12,7 @@
 		880764C3249154F0002FE7AE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 880764C2249154F0002FE7AE /* Assets.xcassets */; };
 		880764C6249154F0002FE7AE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 880764C5249154F0002FE7AE /* Preview Assets.xcassets */; };
 		880764C9249154F0002FE7AE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 880764C7249154F0002FE7AE /* LaunchScreen.storyboard */; };
-		880764D324915582002FE7AE /* InfiniteList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 880764D224915582002FE7AE /* InfiniteList.swift */; };
+		880764D324915582002FE7AE /* RepositoriesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 880764D224915582002FE7AE /* RepositoriesList.swift */; };
 		880764DA24915D7B002FE7AE /* Spinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 880764D524915D7B002FE7AE /* Spinner.swift */; };
 		880764E12492069B002FE7AE /* GithubAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 880764E02492069B002FE7AE /* GithubAPI.swift */; };
 /* End PBXBuildFile section */
@@ -25,7 +25,7 @@
 		880764C5249154F0002FE7AE /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		880764C8249154F0002FE7AE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		880764CA249154F0002FE7AE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		880764D224915582002FE7AE /* InfiniteList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfiniteList.swift; sourceTree = "<group>"; };
+		880764D224915582002FE7AE /* RepositoriesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoriesList.swift; sourceTree = "<group>"; };
 		880764D524915D7B002FE7AE /* Spinner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Spinner.swift; sourceTree = "<group>"; };
 		880764E02492069B002FE7AE /* GithubAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubAPI.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -61,7 +61,7 @@
 			isa = PBXGroup;
 			children = (
 				880764D1249154FE002FE7AE /* App */,
-				880764D224915582002FE7AE /* InfiniteList.swift */,
+				880764D224915582002FE7AE /* RepositoriesList.swift */,
 				880764E02492069B002FE7AE /* GithubAPI.swift */,
 				880764D524915D7B002FE7AE /* Spinner.swift */,
 				880764D0249154F6002FE7AE /* SupportingFiles */,
@@ -171,7 +171,7 @@
 				880764E12492069B002FE7AE /* GithubAPI.swift in Sources */,
 				880764BD249154EE002FE7AE /* AppDelegate.swift in Sources */,
 				880764BF249154EE002FE7AE /* SceneDelegate.swift in Sources */,
-				880764D324915582002FE7AE /* InfiniteList.swift in Sources */,
+				880764D324915582002FE7AE /* RepositoriesList.swift in Sources */,
 				880764DA24915D7B002FE7AE /* Spinner.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
