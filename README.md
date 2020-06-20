@@ -6,7 +6,7 @@
 
 # InfiniteListSwiftUI
 
-A sample project showcasing how to build an infinite list using the Combine and SwiftUI frameworks, and the MVVM pattern.
+A sample project showcasing how to build an infinite list using the Combine and SwiftUI frameworks, and the MVVM iOS app architecture.
 
 <p align="center">
   <img src="https://github.com/V8tr/InfiniteListSwiftUI/blob/master/demo.gif" alt="Infinite List Endless Scroll Paginated List in SwiftUI and Combine"/>
